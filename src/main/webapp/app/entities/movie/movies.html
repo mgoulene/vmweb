@@ -50,6 +50,7 @@
                     <td>{{movie.originalTitle}}</td>
                     <td>{{movie.overview}}</td>
                     <td>
+                        <img data-ng-src="{{'data:' + movie.posterImageContentType + ';base64,' + movie.posterImage}}" style="max-height: 30px;"/>
                         <a ui-sref="picture-detail({id:movie.posterId})">{{movie.posterId}}</a>
                     </td>
                     <td class="text-right">
