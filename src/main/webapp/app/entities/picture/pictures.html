@@ -1,13 +1,13 @@
 <div>
-    <h2>Movies</h2>
+    <h2>Pictures</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="movie.new" >
+                <button class="btn btn-primary" ui-sref="picture.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span class="hidden-xs" >
-                        Create new Movie
+                        Create new Picture
                     </span>
                 </button>
             </div>
@@ -36,38 +36,37 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
                     <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="title"><span>Title</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="originalTitle"><span>Original Title</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="overview"><span>Overview</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="posterId"><span>Poster</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="legend"><span>Legend</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="image"><span>Image</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
-                <tr ng-repeat="movie in vm.movies track by movie.id">
-                    <td><a ui-sref="movie-detail({id:movie.id})">{{movie.id}}</a></td>
-                    <td>{{movie.title}}</td>
-                    <td>{{movie.originalTitle}}</td>
-                    <td>{{movie.overview}}</td>
+                <tr ng-repeat="picture in vm.pictures track by picture.id">
+                    <td><a ui-sref="picture-detail({id:picture.id})">{{picture.id}}</a></td>
+                    <td>{{picture.legend}}</td>
                     <td>
-                        <a ui-sref="picture-detail({id:movie.posterId})">{{movie.posterId}}</a>
+                        <a ng-if="picture.image" ng-click="vm.openFile(picture.imageContentType, picture.image)">
+                            <img data-ng-src="{{'data:' + picture.imageContentType + ';base64,' + picture.image}}" style="max-height: 30px;"/>
+                        </a>
+                        <span ng-if="picture.image">{{picture.imageContentType}}, {{vm.byteSize(picture.image)}}</span>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
-                                    ui-sref="movie-detail({id:movie.id})"
+                                    ui-sref="picture-detail({id:picture.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="movie.edit({id:movie.id})"
+                                    ui-sref="picture.edit({id:picture.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="movie.delete({id:movie.id})"
+                                    ui-sref="picture.delete({id:picture.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm"></span>

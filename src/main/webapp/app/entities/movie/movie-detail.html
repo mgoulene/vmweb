@@ -16,6 +16,10 @@
         <dd>
             <span>{{vm.movie.overview}}</span>
         </dd>
+        <dt><span>Poster</span></dt>
+        <dd>
+            <a ui-sref="picture-detail({id:vm.movie.posterId})">{{vm.movie.posterId}}</a>
+        </dd>
     </dl>
 
     <button type="submit"

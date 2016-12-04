@@ -5,14 +5,15 @@
         .module('vmwebApp')
         .controller('MovieDialogController', MovieDialogController);
 
-    MovieDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Movie'];
+    MovieDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Movie', 'Picture'];
 
-    function MovieDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Movie) {
+    function MovieDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Movie, Picture) {
         var vm = this;
 
         vm.movie = entity;
         vm.clear = clear;
         vm.save = save;
+        vm.pictures = Picture.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

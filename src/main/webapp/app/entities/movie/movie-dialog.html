@@ -54,6 +54,12 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <label for="field_poster">Poster</label>
+            <select class="form-control" id="field_poster" name="poster" ng-model="vm.movie.posterId" ng-options="picture.id as picture.id for picture in vm.pictures"            >
+                <option value=""></option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">

@@ -1,0 +1,32 @@
+
+<div>
+    <h2><span>Picture</span> {{vm.picture.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Legend</span></dt>
+        <dd>
+            <span>{{vm.picture.legend}}</span>
+        </dd>
+        <dt><span>Image</span></dt>
+        <dd>
+            <div ng-if="vm.picture.image">
+                <a ng-click="vm.openFile(vm.picture.imageContentType, vm.picture.image)">
+                    <img data-ng-src="{{'data:' + vm.picture.imageContentType + ';base64,' + vm.picture.image}}" style="max-width: 100%;"/>
+                </a>
+                {{vm.picture.imageContentType}}, {{vm.byteSize(vm.picture.image)}}
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="picture-detail.edit({id:vm.picture.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>
