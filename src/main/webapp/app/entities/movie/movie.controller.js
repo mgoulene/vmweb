@@ -5,9 +5,9 @@
         .module('vmwebApp')
         .controller('MovieController', MovieController);
 
-    MovieController.$inject = ['$scope', '$state', 'Movie', 'MovieSearch', 'ParseLinks', 'AlertService', 'paginationConstants'];
+    MovieController.$inject = ['$scope', '$state', 'Movie', 'Picture', 'MovieSearch', 'ParseLinks', 'AlertService', 'paginationConstants'];
 
-    function MovieController ($scope, $state, Movie, MovieSearch, ParseLinks, AlertService, paginationConstants) {
+    function MovieController ($scope, $state, Movie, Picture, MovieSearch, ParseLinks, AlertService, paginationConstants) {
         var vm = this;
 
         vm.movies = [];
@@ -23,6 +23,8 @@
         vm.clear = clear;
         vm.loadAll = loadAll;
         vm.search = search;
+        vm.posterImage = null;
+        //vm.loadPosterContentType = loadPosterContentType;
 
         loadAll();
 
@@ -54,6 +56,7 @@
                 vm.totalItems = headers('X-Total-Count');
                 for (var i = 0; i < data.length; i++) {
                     vm.movies.push(data[i]);
+
                 }
             }
 
@@ -100,5 +103,13 @@
             vm.currentSearch = searchQuery;
             vm.loadAll();
         }
+
+        /*function loadPosterContentType(posterId) {
+            console.log("loadPosterImage : "+posterId)
+            return Picture.get({id : posterId}).$promise.then(function (poster) {
+                return poster.imageContentType;
+            });
+
+        }*/
     }
 })();

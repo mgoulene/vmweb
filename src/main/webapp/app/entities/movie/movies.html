@@ -36,23 +36,25 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
                     <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="posterId"><span>Poster</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="title"><span>Title</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="originalTitle"><span>Original Title</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="overview"><span>Overview</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="posterId"><span>Poster</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
                 <tr ng-repeat="movie in vm.movies track by movie.id">
                     <td><a ui-sref="movie-detail({id:movie.id})">{{movie.id}}</a></td>
+                    <td>
+                        <a ui-sref="picture-detail({id:movie.posterId})">
+                            <img  picture-load="{{movie.posterId}}" style="max-height: 50px;"/>
+                        </a>
+
+                    </td>
                     <td>{{movie.title}}</td>
                     <td>{{movie.originalTitle}}</td>
                     <td>{{movie.overview}}</td>
-                    <td>
-                        <img data-ng-src="{{'data:' + movie.poster.imageContentType + ';base64,' + movie.poster.image}}" style="max-height: 30px;"/>
-                        <a ui-sref="picture-detail({id:movie.posterId})">{{movie.posterId}}</a>
-                    </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
