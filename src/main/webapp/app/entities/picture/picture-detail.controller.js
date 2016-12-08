@@ -5,9 +5,9 @@
         .module('vmwebApp')
         .controller('PictureDetailController', PictureDetailController);
 
-    PictureDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'DataUtils', 'entity', 'Picture', 'Movie'];
+    PictureDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'DataUtils', 'entity', 'Picture'];
 
-    function PictureDetailController($scope, $rootScope, $stateParams, previousState, DataUtils, entity, Picture, Movie) {
+    function PictureDetailController($scope, $rootScope, $stateParams, previousState, DataUtils, entity, Picture) {
         var vm = this;
 
         vm.picture = entity;

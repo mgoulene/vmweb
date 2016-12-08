@@ -14,14 +14,15 @@
                     ng-model="vm.picture.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_legend">Legend</label>
-            <input type="text" class="form-control" name="legend" id="field_legend"
-                    ng-model="vm.picture.legend"
-                    ng-maxlength="200" />
-            <div ng-show="editForm.legend.$invalid">
+            <label class="control-label" for="field_type">Type</label>
+            <select class="form-control" name="type" ng-model="vm.picture.type" id="field_type" required>
+                <option value="MOVIE">MOVIE</option>
+                <option value="PEOPLE">PEOPLE</option>
+            </select>
+            <div ng-show="editForm.type.$invalid">
                 <p class="help-block"
-                    ng-show="editForm.legend.$error.maxlength">
-                    This field cannot be longer than 200 characters.
+                    ng-show="editForm.type.$error.required">
+                    This field is required.
                 </p>
             </div>
         </div>
@@ -43,9 +44,15 @@
             </div>
             <input type="hidden" class="form-control" name="image" id="field_image"
                     ng-model="vm.picture.image"
-                     />
+                    required />
             <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
                     ng-model="vm.picture.imageContentType" />
+            <div ng-show="editForm.image.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.image.$error.required">
+                    This field is required.
+                </p>
+            </div>
         </div>
 
     </div>

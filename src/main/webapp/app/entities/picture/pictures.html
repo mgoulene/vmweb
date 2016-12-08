@@ -36,7 +36,7 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
                     <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="legend"><span>Legend</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="type"><span>Type</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="image"><span>Image</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
@@ -44,7 +44,7 @@
             <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
                 <tr ng-repeat="picture in vm.pictures track by picture.id">
                     <td><a ui-sref="picture-detail({id:picture.id})">{{picture.id}}</a></td>
-                    <td>{{picture.legend}}</td>
+                    <td>{{picture.type}}</td>
                     <td>
                         <a ng-if="picture.image" ng-click="vm.openFile(picture.imageContentType, picture.image)">
                             <img data-ng-src="{{'data:' + picture.imageContentType + ';base64,' + picture.image}}" style="max-height: 30px;"/>

@@ -95,7 +95,7 @@
                     resolve: {
                         entity: function () {
                             return {
-                                legend: null,
+                                type: null,
                                 image: null,
                                 imageContentType: null,
                                 id: null

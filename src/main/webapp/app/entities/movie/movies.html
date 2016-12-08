@@ -36,25 +36,29 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
                     <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="posterId"><span>Poster</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="title"><span>Title</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="originalTitle"><span>Original Title</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="popularity"><span>Popularity</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="releaseDate"><span>Release Date</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="overview"><span>Overview</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="posterId"><span>Poster</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
                 <tr ng-repeat="movie in vm.movies track by movie.id">
                     <td><a ui-sref="movie-detail({id:movie.id})">{{movie.id}}</a></td>
+                    <td>{{movie.title}}</td>
+                    <td>{{movie.originalTitle}}</td>
+                    <td>{{movie.popularity}}</td>
+                    <td>{{movie.releaseDate}}</td>
+                    <td>{{movie.overview}}</td>
                     <td>
                         <a ui-sref="picture-detail({id:movie.posterId})">
                             <img  picture-load="{{movie.posterId}}" style="max-height: 50px;"/>
                         </a>
 
                     </td>
-                    <td>{{movie.title}}</td>
-                    <td>{{movie.originalTitle}}</td>
-                    <td>{{movie.overview}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

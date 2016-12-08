@@ -5,9 +5,9 @@
         .module('vmwebApp')
         .controller('PictureDialogController', PictureDialogController);
 
-    PictureDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Picture', 'Movie'];
+    PictureDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Picture'];
 
-    function PictureDialogController ($timeout, $scope, $stateParams, $uibModalInstance, DataUtils, entity, Picture, Movie) {
+    function PictureDialogController ($timeout, $scope, $stateParams, $uibModalInstance, DataUtils, entity, Picture) {
         var vm = this;
 
         vm.picture = entity;
@@ -15,7 +15,6 @@
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;
         vm.save = save;
-        vm.movies = Movie.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

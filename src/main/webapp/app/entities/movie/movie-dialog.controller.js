@@ -5,15 +5,23 @@
         .module('vmwebApp')
         .controller('MovieDialogController', MovieDialogController);
 
-    MovieDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Movie', 'Picture'];
+    MovieDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Movie', 'Picture'];
 
-    function MovieDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Movie, Picture) {
+    function MovieDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, Movie, Picture) {
         var vm = this;
 
         vm.movie = entity;
         vm.clear = clear;
         vm.save = save;
-        vm.pictures = Picture.query();
+        vm.posters = Picture.query({filter: 'movie-is-null'});
+        $q.all([vm.movie.$promise, vm.posters.$promise]).then(function() {
+            if (!vm.movie.posterId) {
+                return $q.reject();
+            }
+            return Picture.get({id : vm.movie.posterId}).$promise;
+        }).then(function(poster) {
+            vm.posters.push(poster);
+        });
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

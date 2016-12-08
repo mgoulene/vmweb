@@ -97,6 +97,8 @@
                             return {
                                 title: null,
                                 originalTitle: null,
+                                popularity: null,
+                                releaseDate: null,
                                 overview: null,
                                 id: null
                             };

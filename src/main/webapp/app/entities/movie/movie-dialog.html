@@ -42,21 +42,33 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="control-label" for="field_popularity">Popularity</label>
+            <input type="number" class="form-control" name="popularity" id="field_popularity"
+                    ng-model="vm.movie.popularity"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_releaseDate">Release Date</label>
+            <input type="text" class="form-control" name="releaseDate" id="field_releaseDate"
+                    ng-model="vm.movie.releaseDate"
+                     />
+        </div>
+        <div class="form-group">
             <label class="control-label" for="field_overview">Overview</label>
             <input type="text" class="form-control" name="overview" id="field_overview"
                     ng-model="vm.movie.overview"
-                    ng-maxlength="4000" />
+                    ng-maxlength="40000" />
             <div ng-show="editForm.overview.$invalid">
                 <p class="help-block"
                     ng-show="editForm.overview.$error.maxlength">
-                    This field cannot be longer than 4000 characters.
+                    This field cannot be longer than 40000 characters.
                 </p>
             </div>
         </div>
 
         <div class="form-group">
             <label for="field_poster">Poster</label>
-            <select class="form-control" id="field_poster" name="poster" ng-model="vm.movie.posterId" ng-options="picture.id as picture.id for picture in vm.pictures"            >
+            <select class="form-control" id="field_poster" name="poster" ng-model="vm.movie.posterId" ng-options="picture.id as picture.id for picture in vm.posters | orderBy:'id'">
                 <option value=""></option>
             </select>
         </div>
