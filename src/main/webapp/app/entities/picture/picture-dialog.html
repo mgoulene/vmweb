@@ -16,7 +16,8 @@
         <div class="form-group">
             <label class="control-label" for="field_type">Type</label>
             <select class="form-control" name="type" ng-model="vm.picture.type" id="field_type" required>
-                <option value="MOVIE">MOVIE</option>
+                <option value="POSTER_MOVIE" data-translate="vmwebApp.PictureType.POSTER_MOVIE">POSTER_MOVIE</option>
+                <option value="ARTWORK">ARTWORK</option>
                 <option value="PEOPLE">PEOPLE</option>
             </select>
             <div ng-show="editForm.type.$invalid">

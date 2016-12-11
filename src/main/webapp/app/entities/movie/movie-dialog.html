@@ -42,12 +42,6 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_popularity">Popularity</label>
-            <input type="number" class="form-control" name="popularity" id="field_popularity"
-                    ng-model="vm.movie.popularity"
-                     />
-        </div>
-        <div class="form-group">
             <label class="control-label" for="field_releaseDate">Release Date</label>
             <input type="text" class="form-control" name="releaseDate" id="field_releaseDate"
                     ng-model="vm.movie.releaseDate"
@@ -65,12 +59,88 @@
                 </p>
             </div>
         </div>
+        <div class="form-group">
+            <label class="control-label" for="field_homepage">Homepage</label>
+            <input type="text" class="form-control" name="homepage" id="field_homepage"
+                    ng-model="vm.movie.homepage"
+                    ng-maxlength="400" />
+            <div ng-show="editForm.homepage.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.homepage.$error.maxlength">
+                    This field cannot be longer than 400 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_budget">Budget</label>
+            <input type="number" class="form-control" name="budget" id="field_budget"
+                    ng-model="vm.movie.budget"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_revenue">Revenue</label>
+            <input type="number" class="form-control" name="revenue" id="field_revenue"
+                    ng-model="vm.movie.revenue"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_runtime">Runtime</label>
+            <input type="number" class="form-control" name="runtime" id="field_runtime"
+                    ng-model="vm.movie.runtime"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_voteRating">Vote Rating</label>
+            <input type="number" class="form-control" name="voteRating" id="field_voteRating"
+                    ng-model="vm.movie.voteRating"
+                    min="0" max="10" />
+            <div ng-show="editForm.voteRating.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.voteRating.$error.min" translate-value-min="0">
+                    This field should be more than 0.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.voteRating.$error.max">
+                    This field cannot be more than 10.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.voteRating.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_voteCount">Vote Count</label>
+            <input type="number" class="form-control" name="voteCount" id="field_voteCount"
+                    ng-model="vm.movie.voteCount"
+                     />
+        </div>
 
         <div class="form-group">
             <label for="field_poster">Poster</label>
             <select class="form-control" id="field_poster" name="poster" ng-model="vm.movie.posterId" ng-options="picture.id as picture.id for picture in vm.posters | orderBy:'id'">
                 <option value=""></option>
             </select>
+        </div>
+        <div class="form-group">
+            <label for="field_backdrop">Backdrop</label>
+            <select class="form-control" id="field_backdrop" name="backdrop" ng-model="vm.movie.backdropId" ng-options="picture.id as picture.id for picture in vm.backdrops | orderBy:'id'">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_genre">Genre</label>
+            <select class="form-control" id="field_genre" name="genre" ng-model="vm.movie.genreId" ng-options="genre.id as genre.id for genre in vm.genres | orderBy:'id'">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_actor">Actor</label>
+            <select class="form-control" id="field_actor" multiple name="actor" ng-model="vm.movie.actors" ng-options="actor as actor.id for actor in vm.actors track by actor.id"></select>
+        </div>
+        <div class="form-group">
+            <label for="field_artwork">Artwork</label>
+            <select class="form-control" id="field_artwork" multiple name="artwork" ng-model="vm.movie.artworks" ng-options="picture as picture.id for picture in vm.pictures track by picture.id"></select>
         </div>
     </div>
     <div class="modal-footer">

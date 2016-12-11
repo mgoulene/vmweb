@@ -12,10 +12,6 @@
         <dd>
             <span>{{vm.movie.originalTitle}}</span>
         </dd>
-        <dt><span>Popularity</span></dt>
-        <dd>
-            <span>{{vm.movie.popularity}}</span>
-        </dd>
         <dt><span>Release Date</span></dt>
         <dd>
             <span>{{vm.movie.releaseDate}}</span>
@@ -24,9 +20,53 @@
         <dd>
             <span>{{vm.movie.overview}}</span>
         </dd>
+        <dt><span>Homepage</span></dt>
+        <dd>
+            <span>{{vm.movie.homepage}}</span>
+        </dd>
+        <dt><span>Budget</span></dt>
+        <dd>
+            <span>{{vm.movie.budget}}</span>
+        </dd>
+        <dt><span>Revenue</span></dt>
+        <dd>
+            <span>{{vm.movie.revenue}}</span>
+        </dd>
+        <dt><span>Runtime</span></dt>
+        <dd>
+            <span>{{vm.movie.runtime}}</span>
+        </dd>
+        <dt><span>Vote Rating</span></dt>
+        <dd>
+            <span>{{vm.movie.voteRating}}</span>
+        </dd>
+        <dt><span>Vote Count</span></dt>
+        <dd>
+            <span>{{vm.movie.voteCount}}</span>
+        </dd>
         <dt><span>Poster</span></dt>
         <dd>
             <a ui-sref="picture-detail({id:vm.movie.posterId})">{{vm.movie.posterId}}</a>
+        </dd>
+        <dt><span>Backdrop</span></dt>
+        <dd>
+            <a ui-sref="picture-detail({id:vm.movie.backdropId})">{{vm.movie.backdropId}}</a>
+        </dd>
+        <dt><span>Genre</span></dt>
+        <dd>
+            <a ui-sref="genre-detail({id:vm.movie.genreId})">{{vm.movie.genreId}}</a>
+        </dd>
+        <dt><span>Actor</span></dt>
+        <dd>
+            <span ng-repeat="actor in vm.movie.actors">
+                <a ui-sref="actor-detail({id: actor.id})">{{actor.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span>Artwork</span></dt>
+        <dd>
+            <span ng-repeat="artwork in vm.movie.artworks">
+                <a ui-sref="picture-detail({id: artwork.id})">{{artwork.id}}</a>{{$last ? '' : ', '}}
+            </span>
         </dd>
     </dl>
 

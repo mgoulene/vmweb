@@ -9,44 +9,44 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
-        .state('movie', {
+        .state('person', {
             parent: 'entity',
-            url: '/movie',
+            url: '/person',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'Movies'
+                pageTitle: 'People'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/movie/movies.html',
-                    controller: 'MovieController',
+                    templateUrl: 'app/entities/person/people.html',
+                    controller: 'PersonController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
             }
         })
-        .state('movie-detail', {
+        .state('person-detail', {
             parent: 'entity',
-            url: '/movie/{id}',
+            url: '/person/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'Movie'
+                pageTitle: 'Person'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/movie/movie-detail.html',
-                    controller: 'MovieDetailController',
+                    templateUrl: 'app/entities/person/person-detail.html',
+                    controller: 'PersonDetailController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
-                entity: ['$stateParams', 'Movie', function($stateParams, Movie) {
-                    return Movie.get({id : $stateParams.id}).$promise;
+                entity: ['$stateParams', 'Person', function($stateParams, Person) {
+                    return Person.get({id : $stateParams.id}).$promise;
                 }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {
-                        name: $state.current.name || 'movie',
+                        name: $state.current.name || 'person',
                         params: $state.params,
                         url: $state.href($state.current.name, $state.params)
                     };
@@ -54,22 +54,22 @@
                 }]
             }
         })
-        .state('movie-detail.edit', {
-            parent: 'movie-detail',
+        .state('person-detail.edit', {
+            parent: 'person-detail',
             url: '/detail/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/movie/movie-dialog.html',
-                    controller: 'MovieDialogController',
+                    templateUrl: 'app/entities/person/person-dialog.html',
+                    controller: 'PersonDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Movie', function(Movie) {
-                            return Movie.get({id : $stateParams.id}).$promise;
+                        entity: ['Person', function(Person) {
+                            return Person.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -79,87 +79,82 @@
                 });
             }]
         })
-        .state('movie.new', {
-            parent: 'movie',
+        .state('person.new', {
+            parent: 'person',
             url: '/new',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/movie/movie-dialog.html',
-                    controller: 'MovieDialogController',
+                    templateUrl: 'app/entities/person/person-dialog.html',
+                    controller: 'PersonDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
                         entity: function () {
                             return {
-                                title: null,
-                                originalTitle: null,
-                                releaseDate: null,
-                                overview: null,
+                                name: null,
+                                biography: null,
+                                birthday: null,
+                                deathday: null,
                                 homepage: null,
-                                budget: null,
-                                revenue: null,
-                                runtime: null,
-                                voteRating: null,
-                                voteCount: null,
                                 id: null
                             };
                         }
                     }
                 }).result.then(function() {
-                    $state.go('movie', null, { reload: 'movie' });
+                    $state.go('person', null, { reload: 'person' });
                 }, function() {
-                    $state.go('movie');
+                    $state.go('person');
                 });
             }]
         })
-        .state('movie.edit', {
-            parent: 'movie',
+        .state('person.edit', {
+            parent: 'person',
             url: '/{id}/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/movie/movie-dialog.html',
-                    controller: 'MovieDialogController',
+                    templateUrl: 'app/entities/person/person-dialog.html',
+                    controller: 'PersonDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Movie', function(Movie) {
-                            return Movie.get({id : $stateParams.id}).$promise;
+                        entity: ['Person', function(Person) {
+                            return Person.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('movie', null, { reload: 'movie' });
+                    $state.go('person', null, { reload: 'person' });
                 }, function() {
                     $state.go('^');
                 });
             }]
         })
-        .state('movie.delete', {
-            parent: 'movie',
+        .state('person.delete', {
+            parent: 'person',
             url: '/{id}/delete',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/movie/movie-delete-dialog.html',
-                    controller: 'MovieDeleteController',
+                    templateUrl: 'app/entities/person/person-delete-dialog.html',
+                    controller: 'PersonDeleteController',
                     controllerAs: 'vm',
                     size: 'md',
                     resolve: {
-                        entity: ['Movie', function(Movie) {
-                            return Movie.get({id : $stateParams.id}).$promise;
+                        entity: ['Person', function(Person) {
+                            return Person.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('movie', null, { reload: 'movie' });
+                    $state.go('person', null, { reload: 'person' });
                 }, function() {
                     $state.go('^');
                 });
