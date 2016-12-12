@@ -23,6 +23,7 @@
         function toMovie() {
             console.log("tmdb-movie-detail.controller.js:toMovie()"+vm.tMDBMovie.id);
             TMDBMovieImport.import({id: vm.tMDBMovie.id}, function(result) {
+                console.log("tmdb-movie-detail.controller.js:toMovie() - imported"+vm.tMDBMovie.id);
                 $window.location.href = '#/movie/'+result.id;
             });
         }

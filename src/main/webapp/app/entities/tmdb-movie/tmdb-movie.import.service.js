@@ -12,7 +12,7 @@
         var resourceUrl =  'vmms/' + 'api/_import/tmdb-movies/:id';
 
         return $resource(resourceUrl, {}, {
-            'import': { method: 'GET', isArray: false}
+            'import': { method: 'GET'}
         });
     }
 })();
