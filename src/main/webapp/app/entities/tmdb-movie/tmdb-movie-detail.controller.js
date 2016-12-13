@@ -13,14 +13,14 @@
 
         vm.tMDBMovie = entity;
         vm.previousState = previousState.name;
-        vm.toMovie = toMovie;
+        vm.importTMDBMovie = importTMDBMovie;
 
 
         var unsubscribe = $rootScope.$on('vmwebApp:tMDBMovieUpdate', function(event, result) {
             vm.tMDBMovie = result;
         });
         $scope.$on('$destroy', unsubscribe);
-        function toMovie() {
+        function importTMDBMovie() {
             console.log("tmdb-movie-detail.controller.js:toMovie()"+vm.tMDBMovie.id);
             TMDBMovieImport.import({id: vm.tMDBMovie.id}, function(result) {
                 console.log("tmdb-movie-detail.controller.js:toMovie() - imported"+vm.tMDBMovie.id);
