@@ -96,10 +96,12 @@
                         entity: function () {
                             return {
                                 name: null,
-                                biography: null,
                                 birthday: null,
                                 deathday: null,
+                                biography: null,
+                                birthplace: null,
                                 homepage: null,
+                                tmdbId: null,
                                 id: null
                             };
                         }

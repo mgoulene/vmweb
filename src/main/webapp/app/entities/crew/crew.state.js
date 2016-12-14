@@ -9,44 +9,44 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
-        .state('movie', {
+        .state('crew', {
             parent: 'entity',
-            url: '/movie',
+            url: '/crew',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'Movies'
+                pageTitle: 'Crews'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/movie/movies.html',
-                    controller: 'MovieController',
+                    templateUrl: 'app/entities/crew/crews.html',
+                    controller: 'CrewController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
             }
         })
-        .state('movie-detail', {
+        .state('crew-detail', {
             parent: 'entity',
-            url: '/movie/{id}',
+            url: '/crew/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'Movie'
+                pageTitle: 'Crew'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/movie/movie-detail.html',
-                    controller: 'MovieDetailController',
+                    templateUrl: 'app/entities/crew/crew-detail.html',
+                    controller: 'CrewDetailController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
-                entity: ['$stateParams', 'Movie', function($stateParams, Movie) {
-                    return Movie.get({id : $stateParams.id}).$promise;
+                entity: ['$stateParams', 'Crew', function($stateParams, Crew) {
+                    return Crew.get({id : $stateParams.id}).$promise;
                 }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {
-                        name: $state.current.name || 'movie',
+                        name: $state.current.name || 'crew',
                         params: $state.params,
                         url: $state.href($state.current.name, $state.params)
                     };
@@ -54,22 +54,22 @@
                 }]
             }
         })
-        .state('movie-detail.edit', {
-            parent: 'movie-detail',
+        .state('crew-detail.edit', {
+            parent: 'crew-detail',
             url: '/detail/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/movie/movie-dialog.html',
-                    controller: 'MovieDialogController',
+                    templateUrl: 'app/entities/crew/crew-dialog.html',
+                    controller: 'CrewDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Movie', function(Movie) {
-                            return Movie.get({id : $stateParams.id}).$promise;
+                        entity: ['Crew', function(Crew) {
+                            return Crew.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -79,88 +79,79 @@
                 });
             }]
         })
-        .state('movie.new', {
-            parent: 'movie',
+        .state('crew.new', {
+            parent: 'crew',
             url: '/new',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/movie/movie-dialog.html',
-                    controller: 'MovieDialogController',
+                    templateUrl: 'app/entities/crew/crew-dialog.html',
+                    controller: 'CrewDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
                         entity: function () {
                             return {
-                                title: null,
-                                originalTitle: null,
-                                overview: null,
-                                releaseDate: null,
-                                runtime: null,
-                                voteRating: null,
-                                voteCount: null,
-                                homepage: null,
-                                budget: null,
-                                revenue: null,
-                                tmdbId: null,
+                                department: null,
+                                job: null,
                                 id: null
                             };
                         }
                     }
                 }).result.then(function() {
-                    $state.go('movie', null, { reload: 'movie' });
+                    $state.go('crew', null, { reload: 'crew' });
                 }, function() {
-                    $state.go('movie');
+                    $state.go('crew');
                 });
             }]
         })
-        .state('movie.edit', {
-            parent: 'movie',
+        .state('crew.edit', {
+            parent: 'crew',
             url: '/{id}/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/movie/movie-dialog.html',
-                    controller: 'MovieDialogController',
+                    templateUrl: 'app/entities/crew/crew-dialog.html',
+                    controller: 'CrewDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Movie', function(Movie) {
-                            return Movie.get({id : $stateParams.id}).$promise;
+                        entity: ['Crew', function(Crew) {
+                            return Crew.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('movie', null, { reload: 'movie' });
+                    $state.go('crew', null, { reload: 'crew' });
                 }, function() {
                     $state.go('^');
                 });
             }]
         })
-        .state('movie.delete', {
-            parent: 'movie',
+        .state('crew.delete', {
+            parent: 'crew',
             url: '/{id}/delete',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/movie/movie-delete-dialog.html',
-                    controller: 'MovieDeleteController',
+                    templateUrl: 'app/entities/crew/crew-delete-dialog.html',
+                    controller: 'CrewDeleteController',
                     controllerAs: 'vm',
                     size: 'md',
                     resolve: {
-                        entity: ['Movie', function(Movie) {
-                            return Movie.get({id : $stateParams.id}).$promise;
+                        entity: ['Crew', function(Crew) {
+                            return Crew.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('movie', null, { reload: 'movie' });
+                    $state.go('crew', null, { reload: 'crew' });
                 }, function() {
                     $state.go('^');
                 });

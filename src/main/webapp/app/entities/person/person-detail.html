@@ -8,10 +8,6 @@
         <dd>
             <span>{{vm.person.name}}</span>
         </dd>
-        <dt><span>Biography</span></dt>
-        <dd>
-            <span>{{vm.person.biography}}</span>
-        </dd>
         <dt><span>Birthday</span></dt>
         <dd>
             <span>{{vm.person.birthday | date:'mediumDate'}}</span>
@@ -20,9 +16,25 @@
         <dd>
             <span>{{vm.person.deathday | date:'mediumDate'}}</span>
         </dd>
+        <dt><span>Biography</span></dt>
+        <dd>
+            <span>{{vm.person.biography}}</span>
+        </dd>
+        <dt><span>Birthplace</span></dt>
+        <dd>
+            <span>{{vm.person.birthplace}}</span>
+        </dd>
         <dt><span>Homepage</span></dt>
         <dd>
             <span>{{vm.person.homepage}}</span>
+        </dd>
+        <dt><span>Tmdb Id</span></dt>
+        <dd>
+            <span>{{vm.person.tmdbId}}</span>
+        </dd>
+        <dt><span>Profil</span></dt>
+        <dd>
+            <a ui-sref="picture-detail({id:vm.person.profilId})">{{vm.person.profilId}}</a>
         </dd>
         <dt><span>Profile Picture</span></dt>
         <dd>

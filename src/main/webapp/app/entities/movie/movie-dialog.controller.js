@@ -5,9 +5,9 @@
         .module('vmwebApp')
         .controller('MovieDialogController', MovieDialogController);
 
-    MovieDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Movie', 'Picture', 'Genre', 'Actor'];
+    MovieDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Movie', 'Picture', 'Genre', 'Actor', 'Crew'];
 
-    function MovieDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, Movie, Picture, Genre, Actor) {
+    function MovieDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, Movie, Picture, Genre, Actor, Crew) {
         var vm = this;
 
         vm.movie = entity;
@@ -41,6 +41,7 @@
             vm.genres.push(genre);
         });
         vm.actors = Actor.query();
+        vm.crews = Crew.query();
         vm.pictures = Picture.query();
 
         $timeout(function (){

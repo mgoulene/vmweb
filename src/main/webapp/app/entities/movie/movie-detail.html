@@ -12,13 +12,25 @@
         <dd>
             <span>{{vm.movie.originalTitle}}</span>
         </dd>
+        <dt><span>Overview</span></dt>
+        <dd>
+            <span>{{vm.movie.overview}}</span>
+        </dd>
         <dt><span>Release Date</span></dt>
         <dd>
             <span>{{vm.movie.releaseDate}}</span>
         </dd>
-        <dt><span>Overview</span></dt>
+        <dt><span>Runtime</span></dt>
         <dd>
-            <span>{{vm.movie.overview}}</span>
+            <span>{{vm.movie.runtime}}</span>
+        </dd>
+        <dt><span>Vote Rating</span></dt>
+        <dd>
+            <span>{{vm.movie.voteRating}}</span>
+        </dd>
+        <dt><span>Vote Count</span></dt>
+        <dd>
+            <span>{{vm.movie.voteCount}}</span>
         </dd>
         <dt><span>Homepage</span></dt>
         <dd>
@@ -32,17 +44,9 @@
         <dd>
             <span>{{vm.movie.revenue}}</span>
         </dd>
-        <dt><span>Runtime</span></dt>
+        <dt><span>Tmdb Id</span></dt>
         <dd>
-            <span>{{vm.movie.runtime}}</span>
-        </dd>
-        <dt><span>Vote Rating</span></dt>
-        <dd>
-            <span>{{vm.movie.voteRating}}</span>
-        </dd>
-        <dt><span>Vote Count</span></dt>
-        <dd>
-            <span>{{vm.movie.voteCount}}</span>
+            <span>{{vm.movie.tmdbId}}</span>
         </dd>
         <dt><span>Poster</span></dt>
         <dd>
@@ -60,6 +64,12 @@
         <dd>
             <span ng-repeat="actor in vm.movie.actors">
                 <a ui-sref="actor-detail({id: actor.id})">{{actor.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span>Crew</span></dt>
+        <dd>
+            <span ng-repeat="crew in vm.movie.crews">
+                <a ui-sref="crew-detail({id: crew.id})">{{crew.id}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
         <dt><span>Artwork</span></dt>

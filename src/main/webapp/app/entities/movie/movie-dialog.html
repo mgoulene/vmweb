@@ -42,12 +42,6 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_releaseDate">Release Date</label>
-            <input type="text" class="form-control" name="releaseDate" id="field_releaseDate"
-                    ng-model="vm.movie.releaseDate"
-                     />
-        </div>
-        <div class="form-group">
             <label class="control-label" for="field_overview">Overview</label>
             <input type="text" class="form-control" name="overview" id="field_overview"
                     ng-model="vm.movie.overview"
@@ -60,27 +54,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_homepage">Homepage</label>
-            <input type="text" class="form-control" name="homepage" id="field_homepage"
-                    ng-model="vm.movie.homepage"
-                    ng-maxlength="400" />
-            <div ng-show="editForm.homepage.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.homepage.$error.maxlength">
-                    This field cannot be longer than 400 characters.
-                </p>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="field_budget">Budget</label>
-            <input type="number" class="form-control" name="budget" id="field_budget"
-                    ng-model="vm.movie.budget"
-                     />
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="field_revenue">Revenue</label>
-            <input type="number" class="form-control" name="revenue" id="field_revenue"
-                    ng-model="vm.movie.revenue"
+            <label class="control-label" for="field_releaseDate">Release Date</label>
+            <input type="text" class="form-control" name="releaseDate" id="field_releaseDate"
+                    ng-model="vm.movie.releaseDate"
                      />
         </div>
         <div class="form-group">
@@ -115,6 +91,36 @@
                     ng-model="vm.movie.voteCount"
                      />
         </div>
+        <div class="form-group">
+            <label class="control-label" for="field_homepage">Homepage</label>
+            <input type="text" class="form-control" name="homepage" id="field_homepage"
+                    ng-model="vm.movie.homepage"
+                    ng-maxlength="400" />
+            <div ng-show="editForm.homepage.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.homepage.$error.maxlength">
+                    This field cannot be longer than 400 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_budget">Budget</label>
+            <input type="number" class="form-control" name="budget" id="field_budget"
+                    ng-model="vm.movie.budget"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_revenue">Revenue</label>
+            <input type="number" class="form-control" name="revenue" id="field_revenue"
+                    ng-model="vm.movie.revenue"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_tmdbId">Tmdb Id</label>
+            <input type="number" class="form-control" name="tmdbId" id="field_tmdbId"
+                    ng-model="vm.movie.tmdbId"
+                     />
+        </div>
 
         <div class="form-group">
             <label for="field_poster">Poster</label>
@@ -137,6 +143,10 @@
         <div class="form-group">
             <label for="field_actor">Actor</label>
             <select class="form-control" id="field_actor" multiple name="actor" ng-model="vm.movie.actors" ng-options="actor as actor.id for actor in vm.actors track by actor.id"></select>
+        </div>
+        <div class="form-group">
+            <label for="field_crew">Crew</label>
+            <select class="form-control" id="field_crew" multiple name="crew" ng-model="vm.movie.crews" ng-options="crew as crew.id for crew in vm.crews track by crew.id"></select>
         </div>
         <div class="form-group">
             <label for="field_artwork">Artwork</label>

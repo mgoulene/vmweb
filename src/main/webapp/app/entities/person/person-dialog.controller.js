@@ -15,6 +15,15 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
+        vm.profils = Picture.query({filter: 'person-is-null'});
+        $q.all([vm.person.$promise, vm.profils.$promise]).then(function() {
+            if (!vm.person.profilId) {
+                return $q.reject();
+            }
+            return Picture.get({id : vm.person.profilId}).$promise;
+        }).then(function(profil) {
+            vm.profils.push(profil);
+        });
         vm.profilepictures = Picture.query({filter: 'person-is-null'});
         $q.all([vm.person.$promise, vm.profilepictures.$promise]).then(function() {
             if (!vm.person.profilePictureId) {

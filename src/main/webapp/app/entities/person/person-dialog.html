@@ -26,18 +26,6 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_biography">Biography</label>
-            <input type="text" class="form-control" name="biography" id="field_biography"
-                    ng-model="vm.person.biography"
-                    ng-maxlength="40000" />
-            <div ng-show="editForm.biography.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.biography.$error.maxlength">
-                    This field cannot be longer than 40000 characters.
-                </p>
-            </div>
-        </div>
-        <div class="form-group">
             <label class="control-label" for="field_birthday">Birthday</label>
                 <div class="input-group">
                     <input id="field_birthday" type="text" class="form-control" name="birthday" uib-datepicker-popup="{{dateformat}}" ng-model="vm.person.birthday" is-open="vm.datePickerOpenStatus.birthday"
@@ -58,6 +46,30 @@
                 </div>
         </div>
         <div class="form-group">
+            <label class="control-label" for="field_biography">Biography</label>
+            <input type="text" class="form-control" name="biography" id="field_biography"
+                    ng-model="vm.person.biography"
+                    ng-maxlength="40000" />
+            <div ng-show="editForm.biography.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.biography.$error.maxlength">
+                    This field cannot be longer than 40000 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_birthplace">Birthplace</label>
+            <input type="text" class="form-control" name="birthplace" id="field_birthplace"
+                    ng-model="vm.person.birthplace"
+                    ng-maxlength="1000" />
+            <div ng-show="editForm.birthplace.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.birthplace.$error.maxlength">
+                    This field cannot be longer than 1000 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
             <label class="control-label" for="field_homepage">Homepage</label>
             <input type="text" class="form-control" name="homepage" id="field_homepage"
                     ng-model="vm.person.homepage"
@@ -69,7 +81,19 @@
                 </p>
             </div>
         </div>
+        <div class="form-group">
+            <label class="control-label" for="field_tmdbId">Tmdb Id</label>
+            <input type="number" class="form-control" name="tmdbId" id="field_tmdbId"
+                    ng-model="vm.person.tmdbId"
+                     />
+        </div>
 
+        <div class="form-group">
+            <label for="field_profil">Profil</label>
+            <select class="form-control" id="field_profil" name="profil" ng-model="vm.person.profilId" ng-options="picture.id as picture.id for picture in vm.profils | orderBy:'id'">
+                <option value=""></option>
+            </select>
+        </div>
         <div class="form-group">
             <label for="field_profilePicture">Profile Picture</label>
             <select class="form-control" id="field_profilePicture" name="profilePicture" ng-model="vm.person.profilePictureId" ng-options="picture.id as picture.id for picture in vm.profilepictures | orderBy:'id'">
