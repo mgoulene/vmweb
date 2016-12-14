@@ -4,9 +4,9 @@
         .module('vmwebApp')
         .factory('Movie', Movie);
 
-    Movie.$inject = ['$resource'];
+    Movie.$inject = ['$resource', 'DateUtils'];
 
-    function Movie ($resource) {
+    function Movie ($resource, DateUtils) {
         var resourceUrl =  'vmms/' + 'api/movies/:id';
 
         return $resource(resourceUrl, {}, {
@@ -16,11 +16,27 @@
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
+                        data.releaseDate = DateUtils.convertLocalDateFromServer(data.releaseDate);
                     }
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': {
+                method: 'PUT',
+                transformRequest: function (data) {
+                    var copy = angular.copy(data);
+                    copy.releaseDate = DateUtils.convertLocalDateToServer(copy.releaseDate);
+                    return angular.toJson(copy);
+                }
+            },
+            'save': {
+                method: 'POST',
+                transformRequest: function (data) {
+                    var copy = angular.copy(data);
+                    copy.releaseDate = DateUtils.convertLocalDateToServer(copy.releaseDate);
+                    return angular.toJson(copy);
+                }
+            }
         });
     }
 })();

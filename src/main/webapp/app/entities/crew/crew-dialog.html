@@ -28,7 +28,7 @@
 
         <div class="form-group">
             <label for="field_person">Person</label>
-            <select class="form-control" id="field_person" name="person" ng-model="vm.crew.personId" ng-options="person.id as person.id for person in vm.people | orderBy:'id'">
+            <select class="form-control" id="field_person" name="person" ng-model="vm.crew.personId" ng-options="person.id as person.id for person in vm.people"            >
                 <option value=""></option>
             </select>
         </div>

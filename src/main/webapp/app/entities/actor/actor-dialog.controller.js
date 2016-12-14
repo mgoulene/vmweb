@@ -5,23 +5,15 @@
         .module('vmwebApp')
         .controller('ActorDialogController', ActorDialogController);
 
-    ActorDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Actor', 'Person', 'Movie'];
+    ActorDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Actor', 'Person', 'Movie'];
 
-    function ActorDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, Actor, Person, Movie) {
+    function ActorDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Actor, Person, Movie) {
         var vm = this;
 
         vm.actor = entity;
         vm.clear = clear;
         vm.save = save;
-        vm.people = Person.query({filter: 'actor-is-null'});
-        $q.all([vm.actor.$promise, vm.people.$promise]).then(function() {
-            if (!vm.actor.personId) {
-                return $q.reject();
-            }
-            return Person.get({id : vm.actor.personId}).$promise;
-        }).then(function(person) {
-            vm.people.push(person);
-        });
+        vm.people = Person.query();
         vm.movies = Movie.query();
 
         $timeout(function (){

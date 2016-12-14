@@ -12,6 +12,8 @@
 
         vm.movie = entity;
         vm.clear = clear;
+        vm.datePickerOpenStatus = {};
+        vm.openCalendar = openCalendar;
         vm.save = save;
         vm.posters = Picture.query({filter: 'movie-is-null'});
         $q.all([vm.movie.$promise, vm.posters.$promise]).then(function() {
@@ -43,6 +45,7 @@
         vm.actors = Actor.query();
         vm.crews = Crew.query();
         vm.pictures = Picture.query();
+        vm.genres = Genre.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -71,6 +74,10 @@
             vm.isSaving = false;
         }
 
+        vm.datePickerOpenStatus.releaseDate = false;
 
+        function openCalendar (date) {
+            vm.datePickerOpenStatus[date] = true;
+        }
     }
 })();

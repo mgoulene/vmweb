@@ -5,23 +5,15 @@
         .module('vmwebApp')
         .controller('CrewDialogController', CrewDialogController);
 
-    CrewDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Crew', 'Person', 'Movie'];
+    CrewDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Crew', 'Person', 'Movie'];
 
-    function CrewDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, Crew, Person, Movie) {
+    function CrewDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Crew, Person, Movie) {
         var vm = this;
 
         vm.crew = entity;
         vm.clear = clear;
         vm.save = save;
-        vm.people = Person.query({filter: 'crew-is-null'});
-        $q.all([vm.crew.$promise, vm.people.$promise]).then(function() {
-            if (!vm.crew.personId) {
-                return $q.reject();
-            }
-            return Person.get({id : vm.crew.personId}).$promise;
-        }).then(function(person) {
-            vm.people.push(person);
-        });
+        vm.people = Person.query();
         vm.movies = Movie.query();
 
         $timeout(function (){

@@ -18,7 +18,7 @@
         </dd>
         <dt><span>Release Date</span></dt>
         <dd>
-            <span>{{vm.movie.releaseDate}}</span>
+            <span>{{vm.movie.releaseDate | date:'mediumDate'}}</span>
         </dd>
         <dt><span>Runtime</span></dt>
         <dd>
@@ -76,6 +76,12 @@
         <dd>
             <span ng-repeat="artwork in vm.movie.artworks">
                 <a ui-sref="picture-detail({id: artwork.id})">{{artwork.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span>Genre</span></dt>
+        <dd>
+            <span ng-repeat="genre in vm.movie.genres">
+                <a ui-sref="genre-detail({id: genre.id})">{{genre.id}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
     </dl>

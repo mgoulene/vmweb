@@ -55,9 +55,13 @@
         </div>
         <div class="form-group">
             <label class="control-label" for="field_releaseDate">Release Date</label>
-            <input type="text" class="form-control" name="releaseDate" id="field_releaseDate"
-                    ng-model="vm.movie.releaseDate"
-                     />
+                <div class="input-group">
+                    <input id="field_releaseDate" type="text" class="form-control" name="releaseDate" uib-datepicker-popup="{{dateformat}}" ng-model="vm.movie.releaseDate" is-open="vm.datePickerOpenStatus.releaseDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('releaseDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
         </div>
         <div class="form-group">
             <label class="control-label" for="field_runtime">Runtime</label>
@@ -151,6 +155,10 @@
         <div class="form-group">
             <label for="field_artwork">Artwork</label>
             <select class="form-control" id="field_artwork" multiple name="artwork" ng-model="vm.movie.artworks" ng-options="picture as picture.id for picture in vm.pictures track by picture.id"></select>
+        </div>
+        <div class="form-group">
+            <label for="field_genre">Genre</label>
+            <select class="form-control" id="field_genre" multiple name="genre" ng-model="vm.movie.genres" ng-options="genre as genre.id for genre in vm.genres track by genre.id"></select>
         </div>
     </div>
     <div class="modal-footer">
