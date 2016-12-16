@@ -139,12 +139,6 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="field_genre">Genre</label>
-            <select class="form-control" id="field_genre" name="genre" ng-model="vm.movie.genreId" ng-options="genre.id as genre.id for genre in vm.genres | orderBy:'id'">
-                <option value=""></option>
-            </select>
-        </div>
-        <div class="form-group">
             <label for="field_actor">Actor</label>
             <select class="form-control" id="field_actor" multiple name="actor" ng-model="vm.movie.actors" ng-options="actor as actor.id for actor in vm.actors track by actor.id"></select>
         </div>

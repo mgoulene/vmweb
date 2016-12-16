@@ -5,9 +5,9 @@
         .module('vmwebApp')
         .controller('MovieDetailController', MovieDetailController);
 
-    MovieDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Movie', 'Picture', 'Genre', 'Actor', 'Crew'];
+    MovieDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Movie', 'Picture', 'Actor', 'Crew', 'Genre'];
 
-    function MovieDetailController($scope, $rootScope, $stateParams, previousState, entity, Movie, Picture, Genre, Actor, Crew) {
+    function MovieDetailController($scope, $rootScope, $stateParams, previousState, entity, Movie, Picture, Actor, Crew, Genre) {
         var vm = this;
 
         vm.movie = entity;

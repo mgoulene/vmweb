@@ -36,46 +36,48 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
                     <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="posterId"><span>Poster</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="title"><span>Title</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="originalTitle"><span>Original Title</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <!--<th jh-sort-by="originalTitle"><span>Original Title</span> <span class="glyphicon glyphicon-sort"></span></th>-->
                     <th jh-sort-by="overview"><span>Overview</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="releaseDate"><span>Release Date</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="runtime"><span>Runtime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <!--<th jh-sort-by="runtime"><span>Runtime</span> <span class="glyphicon glyphicon-sort"></span></th>-->
                     <th jh-sort-by="voteRating"><span>Vote Rating</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="voteCount"><span>Vote Count</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="homepage"><span>Homepage</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <!--<th jh-sort-by="homepage"><span>Homepage</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="budget"><span>Budget</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="revenue"><span>Revenue</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="tmdbId"><span>Tmdb Id</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="posterId"><span>Poster</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="backdropId"><span>Backdrop</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="genreId"><span>Genre</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="backdropId"><span>Backdrop</span> <span class="glyphicon glyphicon-sort"></span></th>-->
                     <th></th>
                 </tr>
             </thead>
             <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
                 <tr ng-repeat="movie in vm.movies track by movie.id">
                     <td><a ui-sref="movie-detail({id:movie.id})">{{movie.id}}</a></td>
+                    <td>
+                        <a ui-sref="picture-detail({id:movie.posterId})">
+                            <img  picture-load="{{movie.posterId}}" style="max-height: 200px;"/>
+                        </a>
+
+                    </td>
                     <td>{{movie.title}}</td>
-                    <td>{{movie.originalTitle}}</td>
+                    <<!--<td>{{movie.originalTitle}}</td>-->
                     <td>{{movie.overview}}</td>
-                        <td>{{movie.releaseDate | date:'mediumDate'}}</td>
-                    <td>{{movie.runtime}}</td>
+                    <td>{{movie.releaseDate | date:'mediumDate'}}</td>
+                    <!--<td>{{movie.runtime}}</td>-->
                     <td>{{movie.voteRating}}</td>
                     <td>{{movie.voteCount}}</td>
-                    <td>{{movie.homepage}}</td>
+                    <!--<td>{{movie.homepage}}</td>
                     <td>{{movie.budget}}</td>
                     <td>{{movie.revenue}}</td>
                     <td>{{movie.tmdbId}}</td>
                     <td>
-                        <a ui-sref="picture-detail({id:movie.posterId})">{{movie.posterId}}</a>
-                    </td>
-                    <td>
-                        <a ui-sref="picture-detail({id:movie.backdropId})">{{movie.backdropId}}</a>
-                    </td>
-                    <td>
-                        <a ui-sref="genre-detail({id:movie.genreId})">{{movie.genreId}}</a>
-                    </td>
+                        <a ui-sref="picture-detail({id:movie.posterId})">
+                            <img  picture-load="{{movie.backdropId}}" style="max-height: 50px;"/>
+                        </a>
+
+                    </td>-->
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

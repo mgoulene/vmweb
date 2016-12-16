@@ -56,14 +56,12 @@
         <dd>
             <a ui-sref="picture-detail({id:vm.movie.backdropId})">{{vm.movie.backdropId}}</a>
         </dd>
-        <dt><span>Genre</span></dt>
-        <dd>
-            <a ui-sref="genre-detail({id:vm.movie.genreId})">{{vm.movie.genreId}}</a>
-        </dd>
         <dt><span>Actor</span></dt>
         <dd>
             <span ng-repeat="actor in vm.movie.actors">
-                <a ui-sref="actor-detail({id: actor.id})">{{actor.id}}</a>{{$last ? '' : ', '}}
+                <a ui-sref="actor-detail({id: actor.id})">
+                    <img  picture-load="{{actor.person.profileId}}" style="max-height: 50px;"/>
+                </a>
             </span>
         </dd>
         <dt><span>Crew</span></dt>
