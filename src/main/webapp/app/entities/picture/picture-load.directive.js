@@ -20,10 +20,12 @@
         function load(scope, element, attrs) {
             if (element[0].nodeName == 'IMG') {
                 var posterId = attrs.pictureLoad;
-                Picture.get({id : posterId}).$promise.then(function (result) {
-                    element.attr('src', 'data:' + result.imageContentType + ';base64,' + result.image);
-                    console.log(attrs.ngSrc);
+                if (posterId != null && posterId != "") {
+                    Picture.get({id : posterId}).$promise.then(function (result) {
+                        element.attr('src', 'data:' + result.imageContentType + ';base64,' + result.image);
+                        console.log(attrs.ngSrc);
                 });
+                }
             }
         }
     }
